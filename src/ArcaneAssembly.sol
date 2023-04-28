@@ -6,7 +6,7 @@ import "./IArchmageHall.sol";
 
 contract ArcaneAssembly {
     event Invoked(
-        string indexed ritualName,
+        string ritualName,
         address indexed invoker,
         uint256 indexed ritualID,
         string tauIPFS, // power of tau file
@@ -15,19 +15,19 @@ contract ArcaneAssembly {
         string ritualType
     );
     event Channeled(
-        string indexed ritualName,
+        string ritualName,
         bytes32 indexed parentID,
         bytes32 indexed contribID,
         address contributor,
         string arcaneIPFS
     );
     event Attested(
-        string indexed ritualName,
+        string ritualName,
         bytes32 indexed contribID,
         address indexed attester
     );
     event Flag(
-        string indexed ritualName,
+        string ritualName,
         bytes32 indexed contribID,
         address indexed flagger
     );
@@ -103,6 +103,7 @@ contract ArcaneAssembly {
             msg.sender,
             _arcaneIPFS
         );
+        ++idx;
     }
 
     // signal that the ritual is finished.
