@@ -18,17 +18,20 @@ contract ArcaneAssembly {
         string ritualName,
         bytes32 indexed parentID,
         bytes32 indexed contribID,
+        uint256 indexed ritualID,
         address contributor,
         string arcaneIPFS
     );
     event Attested(
         string ritualName,
         bytes32 indexed contribID,
+        uint256 indexed ritualID,
         address indexed attester
     );
     event Flag(
         string ritualName,
         bytes32 indexed contribID,
+        uint256 indexed ritualID,
         address indexed flagger
     );
 
@@ -100,6 +103,7 @@ contract ArcaneAssembly {
             _ritualName,
             bytes32(idx),
             arcaneID,
+            idx,
             msg.sender,
             _arcaneIPFS
         );
@@ -135,6 +139,7 @@ contract ArcaneAssembly {
             rituals[arcaneStates[_parentID].ritualID].ritualName,
             _parentID,
             arcaneID,
+            arcaneStates[_parentID].ritualID,
             msg.sender,
             _arcaneIPFS
         );
@@ -150,6 +155,7 @@ contract ArcaneAssembly {
         emit Attested(
             rituals[arcaneStates[_contribID].ritualID].ritualName,
             _contribID,
+            arcaneStates[_contribID].ritualID,
             archmageHall.getMaster(msg.sender)
         );
     }
@@ -161,6 +167,7 @@ contract ArcaneAssembly {
         emit Flag(
             rituals[arcaneStates[_contribID].ritualID].ritualName,
             _contribID,
+            arcaneStates[_contribID].ritualID,
             msg.sender
         );
     }
